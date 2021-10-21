@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class LifeSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private const float MAX_F=100, MIN_F=0;
+    private float 
 }
