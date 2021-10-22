@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform playerCamera = null;
     [SerializeField] float mouseSensitivity = 3.5f;
     [SerializeField] float walkSpeed = 6.0f;
+    [SerializeField] public float runSpeed;
     [SerializeField] float gravity = -13.0f;
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
@@ -23,6 +25,10 @@ public class PlayerController : MonoBehaviour
     Vector2 currentMouseDelta = Vector2.zero;
     Vector2 currentMouseDeltaVelocity = Vector2.zero;
 
+    private bool isRunning;
+    private float speed;
+    float targetSpeed;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -31,6 +37,8 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+        targetSpeed = walkSpeed;
     }
 
     void Update()
@@ -63,8 +71,22 @@ public class PlayerController : MonoBehaviour
             velocityY = 0.0f;
 
         velocityY += gravity * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.LeftShift) && !isRunning)
+        {
+            isRunning = true;
+            targetSpeed = runSpeed;
+        }
+
+        if (!Input.GetKey(KeyCode.LeftShift) && isRunning)
+        {
+            isRunning = false;
+            targetSpeed = walkSpeed;
+        }
+
+        speed = Mathf.Lerp(speed,targetSpeed,0.7f);
 		
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY;
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
 
         controller.Move(velocity * Time.deltaTime);
 
