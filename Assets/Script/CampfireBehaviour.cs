@@ -35,7 +35,7 @@ public class CampfireBehaviour : MonoBehaviour
             }
             else
             {
-                help.Cast("请记住：燃料需高于1/4容量",4f);
+                help.Cast("请记住：燃料需高于1/4容量才能生火取暖",4f);
             }
             
         }
