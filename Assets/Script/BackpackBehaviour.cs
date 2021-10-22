@@ -1,18 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackpackBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float heatAmount = 0;
+    public Image heatIndicator;
+    private const float maxF = 100;
+    private void Update()
     {
+        UpdateUI();
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateUI()
     {
-        
+        heatIndicator.fillAmount = heatAmount / maxF;
     }
+    
+    public void FillHeat(float _heat)
+    {
+        heatAmount += _heat;
+    }
+    
 }

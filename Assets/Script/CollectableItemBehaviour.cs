@@ -46,6 +46,12 @@ public class CollectableItemBehaviour : MonoBehaviour
             CollectableIndicator.SetActive(false);
             Destroy(gameObject);
         }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            other.GetComponent<BackpackBehaviour>().FillHeat(item.heatAmount);
+            CollectableIndicator.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
