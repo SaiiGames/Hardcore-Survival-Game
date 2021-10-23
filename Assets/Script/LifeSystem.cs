@@ -70,8 +70,8 @@ public class LifeSystem : MonoBehaviour
         if (other.name == "IL3DN_Water_Plane" &&  !(temperatureIndex>1))
         {
             help.Cast("虽然你会缓慢补水，但在水中会迅速失温！到火堆旁烘干自己...",5f);
-            temperatureIndex = 2f;
-            thirstIndex = -1f;
+            temperatureIndex = 1f;
+            thirstIndex = -2f;
         }
     }
 
@@ -80,7 +80,7 @@ public class LifeSystem : MonoBehaviour
         if (other.name == "IL3DN_Water_Plane")
         {
             help.Cast("虽然你会缓慢补水，但在水中会迅速失温！到火堆旁烘干自己...",5f);
-            temperatureIndex = 1f;
+            temperatureIndex = 0.8f;
             thirstIndex = 0.5f;
         }    }
 }

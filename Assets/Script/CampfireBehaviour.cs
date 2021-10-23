@@ -28,14 +28,14 @@ public class CampfireBehaviour : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Tab))
         {
-            if (backpack.heatAmount > 25)
+            if (backpack.heatAmount > 1)
             {
                 lifeSystem.UpdateHeat(backpack.heatAmount);
                 backpack.heatAmount = 0;
             }
             else
             {
-                help.Cast("请记住：燃料需高于1/4容量才能生火取暖",4f);
+                help.Cast("你的所有燃料都会转换成热量",4f);
             }
             
         }
